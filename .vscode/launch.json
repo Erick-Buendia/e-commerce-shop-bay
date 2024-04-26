@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ECommerceShopBayApplication<e-commerce-shop-bay>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.erick_buendia.spring.app.ecommerceshopbay.ECommerceShopBayApplication",
+            "projectName": "e-commerce-shop-bay",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
