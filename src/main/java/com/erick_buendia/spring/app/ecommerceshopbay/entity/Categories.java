@@ -28,7 +28,7 @@ public class Categories {
     public Categories() {
     }
 
-    public Categories(@Size(max = 45) @NotBlank String name, @Size(max = 150) @NotBlank String description) {
+    public Categories(String name, String description) {
         this.name = name;
         this.description = description;
     }

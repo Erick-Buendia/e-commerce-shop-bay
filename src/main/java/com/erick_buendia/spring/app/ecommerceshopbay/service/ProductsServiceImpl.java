@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.erick_buendia.spring.app.ecommerceshopbay.entity.Categories;
 import com.erick_buendia.spring.app.ecommerceshopbay.entity.Products;
@@ -22,16 +23,19 @@ public class ProductsServiceImpl implements ProductsService {
     @Autowired
     CategoriesRespository categoriesRespository;
 
+    @Transactional(readOnly = true)
     @Override
     public List<Products> findAll() {
         return (List<Products>) productsRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Products> findById(Long id) {
         return productsRepository.findById(id);
     }
 
+    @Transactional
     @Override
     public Products save(Products products) {
         Set<Categories> categories = new HashSet<>();
@@ -45,6 +49,7 @@ public class ProductsServiceImpl implements ProductsService {
         return productsRepository.save(products);
     }
 
+    @Transactional
     @Override
     public Optional<Products> update(Long id, Products products) {
         Optional<Products> productOptional = productsRepository.findById(id);
@@ -60,6 +65,7 @@ public class ProductsServiceImpl implements ProductsService {
         return productOptional;
     }
 
+    @Transactional
     @Override
     public Optional<Products> delete(Long id) {
         Optional<Products> productOptional = productsRepository.findById(id);

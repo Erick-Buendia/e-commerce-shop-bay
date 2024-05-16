@@ -1,17 +1,18 @@
 package com.erick_buendia.spring.app.ecommerceshopbay.entity;
 
-
-
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -42,14 +43,14 @@ public class Products {
 
     @NotNull
     private int quantity;
-    
+
     @NotNull
     private int price;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(
-        name = "categories_products"
-    )
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "products_id"), inverseJoinColumns = @JoinColumn(name = "categories_id"), 
+    uniqueConstraints = @UniqueConstraint(columnNames = {
+            "products_id", "categories_id" }))
     private Set<Categories> categories;
 
     public Products() {
@@ -127,7 +128,5 @@ public class Products {
     public void setCategories(Set<Categories> categories) {
         this.categories = categories;
     }
-
-    
 
 }
