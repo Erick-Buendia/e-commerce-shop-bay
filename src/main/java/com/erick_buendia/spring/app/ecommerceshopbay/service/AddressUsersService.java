@@ -13,5 +13,7 @@ public interface AddressUsersService {
     Optional<AddressUsers> update(Long id, AddressUsers addressUsers);
 
     Optional<AddressUsers> delete(Long id);
- 
+
+    Optional<AddressUsers> findByIdOne(Long id);
+
 }

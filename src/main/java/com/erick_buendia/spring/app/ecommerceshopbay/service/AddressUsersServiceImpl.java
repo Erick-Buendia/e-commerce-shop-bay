@@ -69,4 +69,9 @@ public class AddressUsersServiceImpl implements AddressUsersService {
         return addressDb;
     }
 
+    @Override
+    public Optional<AddressUsers> findByIdOne(Long id) {
+        return Optional.empty();
+    }
+
 }
